@@ -12,14 +12,14 @@ const CategoriesList = ({url, name, id} : {
   return (
     <div>
         <Link href={`/category/${id}`}>
-      <Card className="max-w-sm">
+      <Card className="max-w-sm h-auto">
         <CardHeader>
           <Image
             className="rounded-lg"
             src={url}
             alt="img"
-            width={200}
-            height={200}
+            width={400}
+            height={300}
             priority
           />
         </CardHeader>

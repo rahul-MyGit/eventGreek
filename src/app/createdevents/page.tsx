@@ -27,7 +27,6 @@ function CreatedEvents() {
   const router = useRouter();
 
   useEffect(() => {
-    //TODO: display all events created by user
     const fetchEvents = async () => {
       try {
         const eventsData = await getUserEventsAction();
@@ -69,6 +68,7 @@ function CreatedEvents() {
       }
     }
   };
+    //TODO: add Card from shadcn
 
   return (
     <>
