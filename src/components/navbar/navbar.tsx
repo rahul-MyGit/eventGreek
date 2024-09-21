@@ -16,14 +16,14 @@ export default async function Navbar() {
                 {
                     session && (
                         <Link href="/createdevents">
-                            <Button variant="default" className="flex mr-2 dark:bg-slate-800 dark:text-white">Create Events</Button>
+                            <Button variant="default" className="flex mr-2 dark:bg-slate-800 dark:text-white">Events</Button>
                         </Link>
                     )
                 }
                 {!session ?
                     (
                         <Link href="/auth/signin">
-                            <Button className="dark:bg-slate-800 dark:text-white" variant="default">Sign In</Button>
+                            <Button className="dark:bg-slate-800 dark:text-white mr-2" variant="default">Sign In</Button>
                         </Link>
                     ) : (
                         <form action={userSignOutAction}>

@@ -22,6 +22,8 @@ model User {
   isAdmin     Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  event       Event[]  @relation("EventOrganizer")
 }
 
 //Category
@@ -45,6 +47,8 @@ model Event {
   images      String[]
   category    Category @relation(fields: [categoryId], references: [id])
   categoryId  Int
+  organizer   User     @relation("EventOrganizer", fields: [organizerId], references: [id])
+  organizerId Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

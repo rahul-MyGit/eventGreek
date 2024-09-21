@@ -48,7 +48,7 @@ export default function SignIn() {
         <div className="flex justify-center items-center min-h-screen p-4">
             <Card className="w-full max-w-md">
                 <CardHeader>
-                    <CardTitle className="text-3xl font-bold text-center text-gray-800">Welcome Back</CardTitle>
+                    <CardTitle className="text-3xl font-bold text-center text-gray-800 dark:text-white">Welcome Back</CardTitle>
                 </CardHeader>
                 <CardContent>
                     {globalError && <ErrorMessage error={globalError}/>}

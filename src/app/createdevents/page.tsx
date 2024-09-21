@@ -2,15 +2,47 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { updateUserToAdminAction } from "../actions/userActions";
+import { useEffect, useState } from "react";
+import { getUserEventsAction, updateUserToAdminAction } from "../actions/userActions";
+
+
+interface Event {
+  id: number;
+  name: string;
+  description: string;
+  location: string;
+  date: Date;
+  guests: string[];
+  images: string[];
+  categoryId: number;
+  organizerId: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 function CreatedEvents() {
   const { data: session, update } = useSession();
+  const [events, setEvents] = useState<Event[] | undefined>([]);
+
   const router = useRouter();
 
   useEffect(() => {
-    console.log("SESSION", session);
+    //TODO: display all events created by user
+    const fetchEvents = async () => {
+      try {
+        const eventsData = await getUserEventsAction();
+        if(eventsData.success){
+          setEvents(eventsData.events);
+        }else{
+          throw new Error("Failed to fetch events");
+        }
+      } catch (error) {
+        console.log(error);
+        alert("Failed to fetch events")
+      }
+    }
+
+    fetchEvents();
   }, [session]);
 
   const handleCreateEvent = async () => {
@@ -47,7 +79,21 @@ function CreatedEvents() {
         Create Event
       </button>
       <div>
-        No event exists
+      {events && events.length > 0 ? (
+          events.map((event, index) => (
+            <div key={index} className="flex justify-between">
+              <div>
+              <h3>{event.name}</h3>
+              <p>{event.description}</p>
+              </div>
+              <div>
+                EDIT
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No events created yet</p>
+        )}
       </div>
     </>
   );

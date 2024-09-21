@@ -4,11 +4,8 @@ import { auth } from "@/lib/auth";
 // import { revalidatePath } from "next/cache";
 
 export async function updateUserToAdminAction(){
-    console.log('inside action');
     
     const session = await auth();
-    console.log("session from action", session);
-    
 
     if(!session || !session.user?.email){
         throw new Error("Unauthorized");
@@ -33,6 +30,44 @@ export async function updateUserToAdminAction(){
         return {
             success: false,
             message: "Failed to update the user",
+        }
+    }
+}
+
+export async function getUserEventsAction(){
+    try {
+        const session = await auth();
+        if(!session ||!session.user?.email){
+            throw new Error("Unauthorized");
+        }
+
+        const userWithEvents = await prisma.user.findUnique({
+            where: {
+                email: session.user.email
+            },
+            include: {
+                event: true
+            }
+        });
+
+        if(!userWithEvents) {
+            return {
+                success: false,
+                message: "Error fetching the Events"
+            }
+        }
+
+        return {
+            success: true,
+            events: userWithEvents.event,
+            message: "Fetched user events successfully",
+        }
+        
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: "Failed to get user events",
         }
     }
 }
