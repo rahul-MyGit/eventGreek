@@ -1,47 +1,47 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: nextjs-app-deploy
-# spec:
-#   replicas: 2
-#   selector:
-#     matchLabels:
-#       app: nextjs-app
-#   template:
-#     metadata:
-#       labels:
-#         app: nextjs-app
-#     spec:
-#       containers:
-#       - name: nextjs-app-deploy
-#         image: DOCKER_IMAGE
-#         ports:
-#         - containerPort: 3000
-#         env:
-#           - name: DATABASE_URL
-#             valueFrom:
-#               secretKeyRef:
-#                 name: db-credentials
-#                 key: DATABASE_URL
-#           - name: AUTH_SECRET
-#             valueFrom:
-#               secretKeyRef:
-#                 name: app-secrets
-#                 key: AUTH_SECRET
-#           - name: AUTH_GITHUB_ID
-#             valueFrom:
-#               secretKeyRef:
-#                 name: app-secrets
-#                 key: AUTH_GITHUB_ID
-#           - name: AUTH_GITHUB_SECRET
-#             valueFrom:
-#               secretKeyRef:
-#                 name: app-secrets
-#                 key: AUTH_GITHUB_SECRET
-#         resources:
-#           requests:
-#             memory: "256Mi"
-#             cpu: "500m"    
-#           limits:
-#             memory: "512Mi"
-#             cpu: "1"       
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextjs-app-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nextjs-app
+  template:
+    metadata:
+      labels:
+        app: nextjs-app
+    spec:
+      containers:
+      - name: nextjs-app-deploy
+        image: DOCKER_IMAGE
+        ports:
+        - containerPort: 3000
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials
+                key: DATABASE_URL
+          - name: AUTH_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: app-secrets
+                key: AUTH_SECRET
+          - name: AUTH_GITHUB_ID
+            valueFrom:
+              secretKeyRef:
+                name: app-secrets
+                key: AUTH_GITHUB_ID
+          - name: AUTH_GITHUB_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: app-secrets
+                key: AUTH_GITHUB_SECRET
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"    
+          limits:
+            memory: "512Mi"
+            cpu: "1"       
