@@ -3,7 +3,7 @@ interface eventViewProp {
     eventId: string;
     categoryId: string;
 }
-//@ts-ignore
+//@ts-expect-error "Still yet to create the FE"
 const EventsDetails = ({params} : eventViewProp) => {
     const {eventId} = params
     console.log(params);

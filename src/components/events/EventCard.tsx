@@ -2,6 +2,7 @@ import React from 'react'
 import { Event } from './EventList';
 import Link from 'next/link';
 import { Card, CardContent } from '../ui/card';
+import Image from 'next/image';
 
 interface EventCardProp {
     event : Event
@@ -17,7 +18,7 @@ function EventCard({event} : EventCardProp) {
               <h3 className="font-bold">Images:</h3>
               <div className="flex space-x-3">
                 {event.images.map((image, index) => (
-                  <img key={index} src={image} alt="Event" className="w-16 h-16 rounded-lg" />
+                  <Image key={index} src={image} alt="Event" className="w-16 h-16 rounded-lg" />
                 ))}
               </div>
             </div>
