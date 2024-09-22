@@ -44,9 +44,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install kubectl
-        uses: azure/setup-kubectl@v2
+        uses: azure/setup-kubectl@v1
       - name: Set Kubernetes context
-        uses: azure/k8s-set-context@v2
+        uses: azure/k8s-set-context@v1
         with:
           kubeconfig: ${{ secrets.KUBE_CONFIG_STAGING }}
       - name: Deploy to staging
