@@ -1,11 +1,9 @@
 # apiVersion: apps/v1
 # kind: Deployment
 # metadata:
-#   name: nextjs-app
-#   labels:
-#     app: nextjs-app
+#   name: nextjs-app-deploy
 # spec:
-#   replicas: 3
+#   replicas: 2
 #   selector:
 #     matchLabels:
 #       app: nextjs-app
@@ -15,8 +13,8 @@
 #         app: nextjs-app
 #     spec:
 #       containers:
-#       - name: nextjs-app
-#         image: rahuldocker2/eventgreek/nextjs-app:latest
+#       - name: nextjs-app-deploy
+#         image: DOCKER_IMAGE
 #         ports:
 #         - containerPort: 3000
 #         env:

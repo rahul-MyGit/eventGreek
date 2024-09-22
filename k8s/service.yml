@@ -2,10 +2,9 @@
 # kind: Service
 # metadata:
 #   name: nextjs-app
-# spec:
-#   type: ClusterIP
+# spec:  
+#   type: LoadBalancer
 #   ports:
-#     - port: 3000
+#     - port: 80
 #       targetPort: 3000
-#   selector:
-#     app: nextjs-app
+#       protocol: TCP
